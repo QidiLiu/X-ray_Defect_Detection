@@ -13,5 +13,5 @@ I organized different solutions into separate Git branches for better readabilit
 
 ## Reference
 
-- [^1]: [GitHub - Xiaoqi-Zhao-DLUT/X-ray-PBD](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD)
-- [^2]: [Zhao, X., Pang, Y., Chen, Z., et al. (2024). Towards Automatic Power Battery Detection: New Challenge, Benchmark Dataset and Baseline. In CVPR.](https://arxiv.org/pdf/2312.02528v2.pdf)
+[^1]: [GitHub - Xiaoqi-Zhao-DLUT/X-ray-PBD](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD)
+[^2]: [Zhao, X., Pang, Y., Chen, Z., et al. (2024). Towards Automatic Power Battery Detection: New Challenge, Benchmark Dataset and Baseline. In CVPR.](https://arxiv.org/pdf/2312.02528v2.pdf)
