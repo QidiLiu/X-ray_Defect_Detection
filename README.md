@@ -1,113 +1,17 @@
-<br />
-<p align="center">
-  <h1 align="center">Towards Automatic Power Battery Detection:  New Challenge, Benchmark Dataset and Baseline</h1>
-  <p align="center">
-    CVPR, 2024
-    <br />
-    <a href="https://xiaoqi-zhao-dlut.github.io/"><strong>Xiaoqi Zhao*</strong></a>
-    ·
-    <a href="https://lartpang.github.io/"><strong>Youwei Pang*</strong></a>
-    .
-    <a ><strong>Zhenyu Chen</strong></a>
-    .
-    <a ><strong>Qian Yu</strong></a>
-    ·
-    <a href="https://scholar.google.com/citations?hl=zh-CN&user=XGPdQbIAAAAJ"><strong>Lihe Zhang*</strong></a>
-    ·
-      <a ><strong>Hanqi Liu</strong></a>
-    .
-     <a ><strong>Jiaming Zuo*</strong></a>
-    ·
-    <a href="https://scholar.google.com/citations?hl=zh-CN&user=D3nE0agAAAAJ"><strong>Huchuan Lu</strong></a>
-  </p>
+# X-ray Defect Detection
 
-  <p align="center">
-    <a href='https://arxiv.org/pdf/2312.02528v2.pdf'>
-      <img src='https://img.shields.io/badge/Paper-PDF-green?style=flat&logo=arXiv&logoColor=green' alt='arXiv PDF'>
-    </a>
-    <a href='https://xiaoqi-zhao-dlut.github.io/xray_pbd_cvpr2024/' style='padding-left: 0.5rem;'>
-      <img src='https://img.shields.io/badge/Project-Page-blue?style=flat&logo=Google%20chrome&logoColor=blue' alt='Project Page'>
-    </a>
-  </p>
-<br />
+> Power Battery Detection (PBD) aims to judge whether the battery cell is OK or NG based on the number and overhang. Therefore, object counting and localization are necessary processing for PBD, which can provide accurate coordinate information for all anode and cathode endpoints[^1].
 
-## !! If you are interested in Ai4Industury, feel free to contact with us via Email (zxq@mail.dlut.edu.cn, lartpang@mail.dlut.edu.cn)
+Dr. Zhao (赵骁骐) and his team proposed a solution for power battery detection (PBD) and released an associated dataset[^2], which is [open-sourced on GitHub](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD). I forked this repository to reproduce their algorithm and explore potential improvements to this solution.
 
-## Task Definition
-<p align="center">
-    <img src="./image/pbd_taskpng.png"/> <br />
-</p>
-Power Battery Detection (PBD) aims to judge whether the battery cell is OK or NG based on the number and overhang. Therefore, object counting and localization are necessary processing for PBD, which can provide accurate coordinate information for all anode and cathode endpoints.
+The task takes an X-ray image as input and outputs the locations of all anodes and cathodes. The original (baseline) solution first crops the ROI (region of interest) from the input image, and then uses the ROI and a prompt image as inputs to MDCNet to obtain the anode and cathode output information. My reproduction focuses on the second stage, since the first stage is essentially an object detection task, which is relatively simple nowadays.
 
+I organized different solutions into separate Git branches for better readability:
 
-## Dataset
-<p align="center">
-    <img src="./image/datasets_characteristic -1.png"/> <br />
-</p> 
+- **main**: Overview of this repository.
+- **train-electrode-mdcnet** (not finished yet): Reproduction of original (baseline) solution, focusing on the electrode detection stage.
 
-- Statistics of the X-ray PBD dataset. (a) Taxonomic of interference and shots. (b) Overhang distributions. (c) Number distributions. (d) Co-occurrence  distribution of attributes. (e) Multi-dependencies among these attributes.
- 
- <p align="center">
-    <img src="./image/battery_class.png"/> <br />
-</p>     
+## Reference
 
-- Examples of various attributes from our X-ray PBD dataset (best viewed zoomed in).
- 
- <p align="center">
-    <img src="./image/attribute_description.png"/> <br />
-</p> 
-
-- Attribute descriptions.
-
-## Future Works
-- How to better model PBD is still an open problem.
-- Semi/self-supervised and few-shot learning techniques.
-- Extend the PBD dataset to a 3D form with the help of CT device, which can provide richer internal slices information. 
-- Ai4Industury-Image Blind Enhancement.
-   <p align="center">
-    <img src="./image/future_work_enhance.png"/> <br />
-</p> 
-
-- Ai4Industury-CT Reconstruction.
-     <p align="center">
-    <img src="./image/3D_re.png"/> <br />
-</p> 
-
-- Ai4Industury-Multimodal Unified Model.
-     <p align="center">
-    <img src="./image/Unifiied_model.png"/> <br />
-</p> 
-
-- Ai4Industury-GPT.
-     <p align="center">
-    <img src="./image/Ai4Industry_GPT.png"/> <br />
-</p> 
-
-## Datasets 
--  **X-ray PBD (raw data)**: [Google Drive](https://drive.google.com/file/d/1d_b1V9XimIZSVVPxr3WlKaBtUsIGr9Mq/view?usp=sharing)
--  **X-ray PBD (training data processed in this work)**: [Google Drive](https://drive.google.com/file/d/181Ct0wX05Wc5Ac_LCCgMO9q50vmdGky5/view?usp=sharing)
-
-## Trained Model
--  You can download the trained MDCNet model at [Google Drive](https://drive.google.com/file/d/1NU0xWcRwipYkgj1YxMABoO-Kd3VRcdPU/view?usp=sharing) 
-## To Do List
-
-- [x] Release data sets.
-- [x] Release model code.
-- [x] Release model weights.
-
-
-
-
-
-
-## Citation
-
-If you think X-ray-PBD codebase are useful for your research, please consider referring us:
-
-```bibtex
-@inproceedings{X-ray-PBD,
-  title={Towards Automatic Power Battery Detection: New Challenge, Benchmark Dataset and Baseline},
-  author={Zhao, Xiaoqi and Pang, Youwei and Chen, Zhenyu and Yu, Qian and Zhang, Lihe and Liu, Hanqi and Zuo, Jiaming and Lu, Huchua},
-  booktitle={CVPR},
-  year={2024}
-```
+- [^1]: [GitHub - Xiaoqi-Zhao-DLUT/X-ray-PBD](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD)
+- [^2]: [Zhao, X., Pang, Y., Chen, Z., et al. (2024). Towards Automatic Power Battery Detection: New Challenge, Benchmark Dataset and Baseline. In CVPR.](https://arxiv.org/pdf/2312.02528v2.pdf)
