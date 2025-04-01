@@ -9,9 +9,9 @@ The task takes an X-ray image as input and outputs the locations of all anodes a
 I organized different solutions into separate Git branches for better readability:
 
 - **main**: Overview of this repository.
-- **train-electrode-mdcnet** (not finished yet): Reproduction of original (baseline) solution, focusing on the electrode detection stage.
+- **train-electrode-mdcnet**: Reproduction of original (baseline) solution, focusing on the electrode detection stage.
 
-## Reference
+**Reference**:
 
 [^1]: [GitHub - Xiaoqi-Zhao-DLUT/X-ray-PBD](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD)
 [^2]: [Zhao, X., Pang, Y., Chen, Z., et al. (2024). Towards Automatic Power Battery Detection: New Challenge, Benchmark Dataset and Baseline. In CVPR.](https://arxiv.org/pdf/2312.02528v2.pdf)
