@@ -1,7 +1,9 @@
 # coding: utf-8
 
-dataset_root_test =  '' # DATA_path
-Model = '' # prediction_path
+#trainset_dir =  '../_data/train_crop_data'
+testset_dir =  '../_data/x_ray_pbd_datasets/test'
 
-Models = {'MDCNet':Model}
-test_datasets = {'test_data':dataset_root_test}
+#Model = '' # prediction_path
+
+#Models = {'MDCNet':Model}
+#test_datasets = {'test_data':dataset_root_test}

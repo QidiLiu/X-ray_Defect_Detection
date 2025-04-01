@@ -2,18 +2,19 @@ import os
 import torch
 from torch.autograd import Variable
 from torchvision import transforms
-from utils.config import dataset_root_test
+from utils.config import testset_dir
 from utils.misc import check_mkdir
 from model.MDCNet import MDCNet_fcn,Region_seg
 import ttach as tta
 import torch.nn.functional as F
 import cv2
 import numpy as np
+from tqdm import tqdm
 torch.manual_seed(2018)
 torch.cuda.set_device(0)
 
-ckpt_path = '' # model_pth
-anchor_img_path = '' # input_anchor_path
+ckpt_path = './saved_model' # model_pth
+anchor_img_path = '../_data/train_crop_data/img_crop/10-20-11__NULL_1_2_sangdun-battery_separator_shadow_interference.png' # input_anchor_path
 args = {
     'snapshot1': 'Region_seg',
     'snapshot2': 'MDCNet_seg',
@@ -31,7 +32,7 @@ depth_transform = transforms.ToTensor()
 target_transform = transforms.ToTensor()
 to_pil = transforms.ToPILImage()
 
-to_test = {'PBD_test':dataset_root_test}
+to_test = {'PBD_test':testset_dir}
 transforms = tta.Compose(
     [
         tta.HorizontalFlip(),
@@ -89,8 +90,8 @@ def main():
             check_mkdir(os.path.join(ckpt_path, '%s_%s' % (name, args['snapshot2'])))
             root1 = os.path.join(root, 'img')
             img_list = [f for f in os.listdir(root1)]
-            for idx, img_name in enumerate(img_list):
-                print ('predicting for %s: %d / %d' % (name, idx + 1, len(img_list)))
+            for idx, img_name in tqdm(enumerate(img_list)):
+                #print ('predicting for %s: %d / %d' % (name, idx + 1, len(img_list)))
                 rgb_path = os.path.join(root, 'img', img_name)
                 img = cv2.imread(rgb_path, cv2.IMREAD_COLOR)[:, :, ::-1]
                 anchor_img = cv2.imread(anchor_img_path, cv2.IMREAD_COLOR)[:, :, ::-1] # anchor
@@ -140,7 +141,7 @@ def main():
                 for transformer in transforms:  # custom transforms or e.g. tta.aliases.d4_transform()
                     rgb_trans = transformer.augment_image(img_crop_var)
                     rgb_trans_anchor = transformer.augment_image(anchor_img_crop_var)
-                    print(rgb_trans.shape,rgb_trans_anchor.shape)
+                    #print(rgb_trans.shape,rgb_trans_anchor.shape)
                     model_output = net2(rgb_trans,rgb_trans_anchor)
                     model_output_neg = model_output[:, 0, :, :].unsqueeze(0)
                     model_output_pos = model_output[:, 1, :, :].unsqueeze(0)
