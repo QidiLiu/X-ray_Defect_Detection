@@ -29,7 +29,7 @@ Please see [GitHub - Xiaoqi-Zhao-DLUT/X-ray-PBD](https://github.com/Xiaoqi-Zhao-
 ## 2. Train
 
 ```bash
-python train.py --data_root ../_data/train_crop_data --anchor_path ../_data/train_crop_data/img_crop/10-20-11__NULL_1_2_sangdun-battery_separator_shadow_interference.png --epochs 500
+python train.py --data_root ../_data/train_crop_data --anchor_path ../_data/train_crop_data/img_crop/10-20-11__NULL_1_2_sangdun-battery_separator_shadow_interference.png --epochs 80
 ```
 
 ## 3. Infer
