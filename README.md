@@ -10,6 +10,7 @@ I organized different solutions into separate Git branches for better readabilit
 
 - **main**: Overview of this repository.
 - **train-electrode-mdcnet**: Reproduction of original (baseline) solution, focusing on the electrode detection stage.
+- (Not finished yet) **infer-electrode-mdcnet-trt**: Inference of electrode detection stage using TensorRT.
 
 **Reference**:
 
