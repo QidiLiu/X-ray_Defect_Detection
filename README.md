@@ -38,3 +38,9 @@ Download the "Region_seg.pth" from [GitHub - Xiaoqi-Zhao-DLUT/X-ray-PBD](https:/
 ````bash
 python infer.py
 ````
+
+## 4. Export
+
+````bash
+python export.py
+````
