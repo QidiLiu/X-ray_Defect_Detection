@@ -1,18 +1,41 @@
-# X-ray Defect Detection
+# X-ray Defect Detection - infer-electrode-mdcnet-trt
 
-> Power Battery Detection (PBD) aims to judge whether the battery cell is OK or NG based on the number and overhang. Therefore, object counting and localization are necessary processing for PBD, which can provide accurate coordinate information for all anode and cathode endpoints[^1].
+Inference speed test for the `MDCNet` model using TensorRT with RTX4060Ti.
 
-Dr. Zhao (赵骁骐) and his team proposed a solution for power battery detection (PBD) and released an associated dataset[^2], which is [open-sourced on GitHub](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD). I forked this repository to reproduce their algorithm and explore potential improvements to this solution.
+## 1. Prerequisite
 
-The task takes an X-ray image as input and outputs the locations of all anodes and cathodes. The original (baseline) solution first crops the ROI (region of interest) from the input image, and then uses the ROI and a prompt image as inputs to MDCNet to obtain the anode and cathode output information. My reproduction focuses on the second stage, since the first stage is essentially an object detection task, which is relatively simple nowadays.
+### 1-1. Environment
 
-I organized different solutions into separate Git branches for better readability:
+- CMake 4.0.0
+- TensorRT 10.9.0.34
+- OpenCV 4.11.0 (with CUDA support)
 
-- **main**: Overview of this repository.
-- **train-electrode-mdcnet**: Reproduction of original (baseline) solution, focusing on the electrode detection stage.
-- (Not finished yet) **infer-electrode-mdcnet-trt**: Inference of electrode detection stage using TensorRT.
+### 1-2. Dataset and Model
 
-**Reference**:
+- Input test data: random image from [GitHub - Xiaoqi-Zhao-DLUT/X-ray-PBD](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD)
+- Pretrained weights: you can train and export MDCNet model yourself (please see branch "train-electrode-mdcnet" for more detail) or download the pretrained weights from [GitHub - Xiaoqi-Zhao-DLUT/X-ray-PBD](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD) and convert it to TensorRT engine using `trtexec`.
 
-[^1]: [GitHub - Xiaoqi-Zhao-DLUT/X-ray-PBD](https://github.com/Xiaoqi-Zhao-DLUT/X-ray-PBD)
-[^2]: [Zhao, X., Pang, Y., Chen, Z., et al. (2024). Towards Automatic Power Battery Detection: New Challenge, Benchmark Dataset and Baseline. In CVPR.](https://arxiv.org/pdf/2312.02528v2.pdf)
+## 2. Infer
+
+Build the project using CMake, and then run the executable:
+```bash
+cd build/Release
+.\infer-electrode-mdcnet-trt.exe --trt_model C:/Users/ben/Dev/X-ray_Defect_Detection/train-electrode-mdcnet/saved_model/MDCNet_seg.engine
+```
+
+## 3. Result
+
+```bash
+ ======================
+ Avg time per sample:
+ 6.391 ms
+ Batch size:
+ 1
+ Avg FPS:
+ 156 fps
+ ======================
+```
+
+**Acknowledgement**:
+
+- The code in directory "third_party/tensorrt-cpp-api-6.0" is sourced from [GitHub - cyrusbehr/tensorrt-cpp-api](https://github.com/cyrusbehr/tensorrt-cpp-api), developed by Cyrus Behroozi. This component is used under its original MIT license.

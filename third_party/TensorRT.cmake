@@ -1,0 +1,10 @@
+set(CUDA_DIR "C:/Program Files/NVIDIA GPU Computing Toolkit/CUDA/v12.6/lib/cmake/libcudacxx")
+find_package(CUDA REQUIRED)
+message(STATUS "CUDA_VERSION: ${CUDA_VERSION}")
+message(STATUS "CUDA_INCLUDE_DIRS: ${CUDA_INCLUDE_DIRS}")
+message(STATUS "CUDA_LIBRARIES: ${CUDA_LIBRARIES}")
+message(STATUS "CUDA_CUDART_LIBRARY: ${CUDA_CUDART_LIBRARY}")
+
+set(TensorRT_DIR C:/Users/ben/Lib/TensorRT-10.9.0.34)
+find_library(TensorRT_LIBRARIES nvinfer_10 HINTS "${TensorRT_DIR}/lib")
+set(TensorRT_INCLUDE_DIRS ${TensorRT_DIR}/include)

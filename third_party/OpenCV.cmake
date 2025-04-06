@@ -1,0 +1,5 @@
+set(OpenCV_DIR C:/Users/ben/Lib/opencv-install)
+find_package(OpenCV CONFIG REQUIRED)
+message(STATUS "[INFO] Using OpenCV-${OpenCV_VERSION}")
+target_include_directories(${PROJECT_NAME} PRIVATE ${OpenCV_INCLUDE_DIRS})
+target_link_libraries(${PROJECT_NAME} ${OpenCV_LIBRARIES})
