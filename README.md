@@ -9,6 +9,7 @@ The task takes an X-ray image as input and outputs the locations of all anodes a
 I organized different solutions into separate Git branches for better readability:
 
 - **main**: Overview of this repository.
+- **tool**: Tools for data processing and visualization.
 - **train-electrode-mdcnet**: Reproduction of original (baseline) solution, focusing on the electrode detection stage.
 - **infer-electrode-mdcnet-trt**: Inference of electrode detection stage using TensorRT.
 
